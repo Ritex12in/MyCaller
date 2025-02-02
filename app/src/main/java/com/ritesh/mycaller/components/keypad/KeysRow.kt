@@ -21,7 +21,7 @@ fun KeysRow(
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = modifier
             .fillMaxWidth()
-            .padding(4.dp)
+            .padding(2.dp)
     ) {
         keyValue.forEach { key->
             KeyItem(key, onClick = { onClick(key) })

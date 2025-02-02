@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.ritesh.mycaller.basics.Utils
@@ -72,7 +73,8 @@ fun SearchContactScreen(
             ModalBottomSheet(
                 onDismissRequest = {showDialer=false},
                 sheetState = sheetState,
-                dragHandle = null
+                dragHandle = null,
+                shape = RectangleShape
             ) {
                 DialerBottomSheet()
             }

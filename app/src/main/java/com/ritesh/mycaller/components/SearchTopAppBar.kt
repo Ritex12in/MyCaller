@@ -48,8 +48,8 @@ fun SearchTopAppBar(
             ) { searching ->
                 if (searching) {
                     LaunchedEffect(Unit) {
-                        focusRequester.requestFocus()  // Request focus on TextField
-                        keyboardController?.show()    // Open keyboard
+                        focusRequester.requestFocus()
+                        keyboardController?.show()
                     }
                     TextField(
                         value = searchQuery,
