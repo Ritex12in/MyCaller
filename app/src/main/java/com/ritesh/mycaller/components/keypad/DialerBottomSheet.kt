@@ -22,14 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ritesh.mycaller.R
-import com.ritesh.mycaller.ui.theme.MyCallerTheme
 
 @Composable
-fun DialerBottomSheet(modifier: Modifier = Modifier) {
+fun DialerBottomSheet(updatePhoneNumber:(String)->Unit,modifier: Modifier = Modifier) {
     var contact by rememberSaveable { mutableStateOf("") }
 
     Column(
@@ -45,7 +43,10 @@ fun DialerBottomSheet(modifier: Modifier = Modifier) {
                     .padding(start = 12.dp)
                     .weight(1f)
             )
-            IconButton(onClick = {contact=contact.dropLast(1)}) {
+            IconButton(onClick = {
+                contact=contact.dropLast(1)
+                updatePhoneNumber(contact)
+            }) {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.baseline_backspace_24),
                     contentDescription = "Backspace",
@@ -58,10 +59,22 @@ fun DialerBottomSheet(modifier: Modifier = Modifier) {
             color = Color.LightGray,
         )
         Column {
-            KeysRow(listOf("1","2","3"), onClick = {contact+=it})
-            KeysRow(listOf("4","5","6"), onClick = {contact+=it})
-            KeysRow(listOf("7","8","9"), onClick = {contact+=it})
-            KeysRow(listOf("*","0","#"), onClick = {contact+=it})
+            KeysRow(listOf("1","2","3"), onClick = {
+                contact+=it
+                updatePhoneNumber(contact)
+            })
+            KeysRow(listOf("4","5","6"), onClick = {
+                contact+=it
+                updatePhoneNumber(contact)
+            })
+            KeysRow(listOf("7","8","9"), onClick = {
+                contact+=it
+                updatePhoneNumber(contact)
+            })
+            KeysRow(listOf("*","0","#"), onClick = {
+                contact+=it
+                updatePhoneNumber(contact)
+            })
         }
         ElevatedButton(onClick = {},
             colors = ButtonDefaults.elevatedButtonColors(
@@ -82,13 +95,5 @@ fun DialerBottomSheet(modifier: Modifier = Modifier) {
                     )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun DiallerPrev() {
-    MyCallerTheme {
-        DialerBottomSheet()
     }
 }

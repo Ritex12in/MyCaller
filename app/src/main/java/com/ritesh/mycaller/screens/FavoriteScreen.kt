@@ -79,7 +79,8 @@ fun FavoriteScreen(navController: NavController,viewModel: ContactViewModel,padd
                 }
             })
             ContactList(contacts,
-                onClick = {Utils.showToast(context, "Clicked on favorite contact")}
+                0,
+                onClick = {}
             )
         }
     }

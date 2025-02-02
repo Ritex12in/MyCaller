@@ -14,36 +14,28 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ritesh.mycaller.R
-import com.ritesh.mycaller.basics.Utils
 import com.ritesh.mycaller.models.Contact
 
 @Composable
-fun ContactItem(contact: Contact,modifier: Modifier = Modifier) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
+fun ContactItem(contact: Contact,action:Int, onClick:()->Unit,modifier: Modifier = Modifier) {
+    var expanded by remember { mutableStateOf(false) }
     Column(modifier=modifier
         .fillMaxWidth()
         .padding(8.dp)
@@ -52,7 +44,9 @@ fun ContactItem(contact: Contact,modifier: Modifier = Modifier) {
             color = if (expanded) MaterialTheme.colorScheme.tertiary else Color.Transparent
         )
         .padding(12.dp)
-        .clickable { expanded = !expanded }
+        .clickable { if(action!=1){expanded = !expanded}
+            onClick()
+        }
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically,

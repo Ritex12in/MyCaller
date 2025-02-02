@@ -99,7 +99,8 @@ fun ContactScreen(viewModel: ContactViewModel,paddingValues: PaddingValues,modif
                 }
             )
             ContactList(contacts,
-                onClick = {Utils.showToast(context, "Clicked on contact")}
+                0,
+                onClick = {}
                 )
         }
     }

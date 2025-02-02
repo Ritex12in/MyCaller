@@ -1,7 +1,6 @@
 package com.ritesh.mycaller.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +14,8 @@ import androidx.compose.ui.unit.dp
 import com.ritesh.mycaller.models.Contact
 
 @Composable
-fun ContactList(contactList:List<Contact>,onClick:(Contact)->Unit,modifier: Modifier = Modifier) {
+fun ContactList(contactList:List<Contact>,action:Int,onClick:(Contact)->Unit,modifier: Modifier = Modifier) {
+
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -25,9 +25,8 @@ fun ContactList(contactList:List<Contact>,onClick:(Contact)->Unit,modifier: Modi
     ) {
         items(contactList){item->
             ContactItem(item,
-            modifier = Modifier.clickable {
-                onClick(item)
-            }
+                action,
+                {onClick(item)}
             )
         }
     }
